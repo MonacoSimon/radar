@@ -426,3 +426,96 @@ FodyWeavers.xsd
 
 # Official VS Code C# Dev Kit Extension exclusion
 #*.lscache
+
+# ==========================================
+# PYTHON
+# ==========================================
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyo
+
+# ==========================================
+# ENTORNOS VIRTUALES
+# ==========================================
+venv/
+.venv/
+ENV/
+env/
+env.bak/
+venv.bak/
+
+# ==========================================
+# DJANGO
+# ==========================================
+*.log
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+media/
+staticfiles/
+
+# ==========================================
+# VARIABLES DE ENTORNO Y SECRETOS
+# ==========================================
+.env
+.env.*
+!.env.example
+secrets.json
+
+# ==========================================
+# MIGRACIONES
+# ==========================================
+# IMPORTANTE: conservar las migraciones de Django
+# No ignorar las carpetas migrations/
+
+# ==========================================
+# IDE Y EDITORES
+# ==========================================
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+*.swp
+*.swo
+*~
+
+# ==========================================
+# SISTEMA OPERATIVO
+# ==========================================
+.DS_Store
+Thumbs.db
+desktop.ini
+$RECYCLE.BIN/
+
+# ==========================================
+# TESTING Y COBERTURA
+# ==========================================
+.coverage
+.coverage.*
+htmlcov/
+.pytest_cache/
+.tox/
+.nox/
+coverage.xml
+nosetests.xml
+
+# ==========================================
+# DISTRIBUCIÓN Y COMPILACIÓN
+# ==========================================
+build/
+dist/
+*.egg-info/
+.eggs/
+wheels/
+pip-wheel-metadata/
+
+# ==========================================
+# JUPYTER
+# ==========================================
+.ipynb_checkpoints/
+
+# ==========================================
+# QODO
+# ==========================================
+.qodo/cache/
