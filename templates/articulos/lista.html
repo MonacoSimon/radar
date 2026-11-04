@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Artículos | Portal de Noticias
+{% endblock %}
+
+{% block content %}
+
+<h2>Todos los artículos</h2>
+
+{% if articulos %}
+
+    {% for articulo in articulos %}
+
+        <article>
+            <h3>{{ articulo.titulo }}</h3>
+
+            {% if articulo.subtitulo %}
+                <p>{{ articulo.subtitulo }}</p>
+            {% endif %}
+
+            <p>{{ articulo.contenido|truncatewords:40 }}</p>
+
+            <p>
+                Autor: {{ articulo.autor }}
+                | Categoría: {{ articulo.categoria }}
+            </p>
+
+            <a href="{% url 'articulos:detalle' articulo.slug %}">
+                Leer artículo completo
+            </a>
+
+            <hr>
+        </article>
+
+    {% endfor %}
+
+{% else %}
+
+    <p>No hay artículos publicados.</p>
+
+{% endif %}
+
+{% endblock %}

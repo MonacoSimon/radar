@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Categorías | Portal de Noticias
+{% endblock %}
+
+{% block content %}
+
+<h2>Nuestras categorías</h2>
+
+{% if categorias %}
+
+    <ul>
+        {% for categoria in categorias %}
+            <li>
+                <h3>
+                    <a href="{% url 'categorias:detalle' categoria.slug %}">
+                        {{ categoria.nombre }}
+                    </a>
+                </h3>
+                <p>{{ categoria.descripcion }}</p>
+            </li>
+        {% endfor %}
+    </ul>
+
+{% else %}
+
+    <p>No hay categorías disponibles.</p>
+
+{% endif %}
+
+{% endblock %}

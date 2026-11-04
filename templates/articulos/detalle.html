@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{{ articulo.titulo }} | Portal de Noticias
+{% endblock %}
+
+{% block content %}
+
+<article>
+
+    <h2>{{ articulo.titulo }}</h2>
+
+    {% if articulo.subtitulo %}
+        <h3>{{ articulo.subtitulo }}</h3>
+    {% endif %}
+
+    <p>
+        Autor: {{ articulo.autor }}
+        | Categoría: {{ articulo.categoria }}
+    </p>
+
+    <p>
+        Publicado: {{ articulo.fecha_creacion|date:"d/m/Y" }}
+    </p>
+
+    {% if articulo.imagen %}
+        <img src="{{ articulo.imagen.url }}" alt="{{ articulo.titulo }}">
+    {% endif %}
+
+    <div>
+        {{ articulo.contenido|linebreaks }}
+    </div>
+
+</article>
+
+<a href="{% url 'articulos:lista' %}">Volver a los artículos</a>
+
+{% endblock %}

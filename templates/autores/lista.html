@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Autores | Portal de Noticias
+{% endblock %}
+
+{% block content %}
+
+<h2>Nuestros autores</h2>
+
+{% if autores %}
+
+    {% for autor in autores %}
+
+        <article>
+            <h3>{{ autor.nombre }} {{ autor.apellido }}</h3>
+
+            {% if autor.foto_perfil %}
+                <img src="{{ autor.foto_perfil.url }}"
+                     alt="Foto de {{ autor.nombre }}">
+            {% endif %}
+
+            <p>{{ autor.biografia|truncatewords:40 }}</p>
+
+            <p>Email: {{ autor.email }}</p>
+        </article>
+
+        <hr>
+
+    {% endfor %}
+
+{% else %}
+
+    <p>No hay autores disponibles.</p>
+
+{% endif %}
+
+{% endblock %}

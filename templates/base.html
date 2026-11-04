@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Portal de Noticias{% endblock %}</title>
+</head>
+<body>
+
+    <header>
+        <h1>Portal de Noticias</h1>
+
+        <nav>
+            <a href="/">Inicio</a>
+            <a href="/acerca/">Acerca de</a>
+            <a href="/articulos/">Artículos</a>
+            <a href="/categorias/">Categorías</a>
+            <a href="/autores/">Autores</a>
+            <a href="/contacto/">Contacto</a>
+        </nav>
+    </header>
+
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Portal de Noticias. Todos los derechos reservados.</p>
+    </footer>
+
+</body>
+</html>
