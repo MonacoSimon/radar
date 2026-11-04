@@ -5,6 +5,24 @@ Portal de noticias desarrollado con **Django**, como proyecto académico de la c
 Radar permite publicar y consultar artículos organizados por categorías, visualizar perfiles de autores, realizar comentarios y enviar mensajes mediante un formulario de contacto.
 
 ---
+## Síntesis del proyecto y objetivos
+
+**Radar** es un portal de noticias desarrollado con Django, cuyo propósito es ofrecer una plataforma web para la publicación, consulta y organización de noticias y artículos de actualidad.
+
+La aplicación permite gestionar artículos, autores, categorías, comentarios y mensajes de contacto, proporcionando una estructura organizada tanto para la administración del contenido como para su consulta por parte de los visitantes.
+
+### Objetivo general
+
+Desarrollar un portal web de noticias que permita administrar y visualizar información periodística de manera organizada, facilitando la publicación y consulta de artículos clasificados por categorías y autores.
+
+### Objetivos específicos
+
+- Implementar la gestión de artículos, incluyendo su creación, edición y publicación.
+- Organizar las noticias mediante categorías.
+- Permitir la administración de perfiles de autores.
+- Incorporar un sistema de comentarios con moderación.
+- Ofrecer un formulario de contacto para los visitantes.
+- Desarrollar una interfaz que facilite la navegación y el acceso a las noticias.
 
 ## Tabla de contenidos
 
