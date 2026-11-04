@@ -1,44 +1,75 @@
+
 {% extends 'base.html' %}
 
 {% block title %}
-Artículos | Portal de Noticias
+Artículos | Radar
 {% endblock %}
 
 {% block content %}
 
-<h2>Todos los artículos</h2>
+<section class="articles-section">
 
-{% if articulos %}
+    <h2>Todos los artículos</h2>
 
-    {% for articulo in articulos %}
+    {% if articulos %}
 
-        <article>
-            <h3>{{ articulo.titulo }}</h3>
+        <div class="articles-grid">
 
-            {% if articulo.subtitulo %}
-                <p>{{ articulo.subtitulo }}</p>
-            {% endif %}
+            {% for articulo in articulos %}
 
-            <p>{{ articulo.contenido|truncatewords:40 }}</p>
+                <article class="article-card">
 
-            <p>
-                Autor: {{ articulo.autor }}
-                | Categoría: {{ articulo.categoria }}
-            </p>
+                    {% if articulo.imagen %}
+                        <img
+                            src="{{ articulo.imagen.url }}"
+                            alt="{{ articulo.titulo }}"
+                            class="article-image"
+                        >
+                    {% endif %}
 
-            <a href="{% url 'articulos:detalle' articulo.slug %}">
-                Leer artículo completo
-            </a>
+                    <div class="article-content">
 
-            <hr>
-        </article>
+                        <span class="article-category">
+                            {{ articulo.categoria }}
+                        </span>
 
-    {% endfor %}
+                        <h3>{{ articulo.titulo }}</h3>
 
-{% else %}
+                        {% if articulo.subtitulo %}
+                            <p class="article-subtitle">
+                                {{ articulo.subtitulo }}
+                            </p>
+                        {% endif %}
 
-    <p>No hay artículos publicados.</p>
+                        <p>
+                            {{ articulo.contenido|truncatewords:40 }}
+                        </p>
 
-{% endif %}
+                        <div class="article-meta">
+                            <span>Por {{ articulo.autor }}</span>
+                        </div>
+
+                        <a
+                            href="{% url 'articulos:detalle' articulo.slug %}"
+                            class="article-link"
+                        >
+                            Leer artículo completo
+                        </a>
+
+                    </div>
+
+                </article>
+
+            {% endfor %}
+
+        </div>
+
+    {% else %}
+
+        <p>No hay artículos publicados.</p>
+
+    {% endif %}
+
+</section>
 
 {% endblock %}

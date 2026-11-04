@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Comentar artículo | Portal de Noticias
+{% endblock %}
+
+{% block content %}
+
+<h2>Comentar: {{ articulo.titulo }}</h2>
+
+<form method="POST">
+    {% csrf_token %}
+
+    {{ formulario.as_p }}
+
+    <button type="submit">Enviar comentario</button>
+</form>
+
+<a href="{% url 'articulos:detalle' articulo.slug %}">
+    Volver al artículo
+</a>
+
+{% endblock %}

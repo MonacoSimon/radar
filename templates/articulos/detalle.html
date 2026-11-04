@@ -31,8 +31,45 @@
         {{ articulo.contenido|linebreaks }}
     </div>
 
+    <hr>
+
+    <h3>Dejá tu comentario</h3>
+
+    <a href="{% url 'comentarios:crear' articulo.id %}">
+        Escribir un comentario
+    </a>
+
 </article>
 
+<hr>
+
+<h3>Comentarios</h3>
+
+{% if comentarios %}
+
+    {% for comentario in comentarios %}
+
+        <article>
+            <h4>{{ comentario.nombre }}</h4>
+
+            <p>{{ comentario.contenido }}</p>
+
+            <small>
+                {{ comentario.fecha_creacion|date:"d/m/Y H:i" }}
+            </small>
+        </article>
+
+        <hr>
+
+    {% endfor %}
+
+{% else %}
+
+    <p>Todavía no hay comentarios aprobados.</p>
+
+{% endif %}
+
+<br>
 <a href="{% url 'articulos:lista' %}">Volver a los artículos</a>
 
 {% endblock %}

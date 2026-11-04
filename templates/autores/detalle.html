@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{{ autor.nombre }} {{ autor.apellido }} | Portal de Noticias
+{% endblock %}
+
+{% block content %}
+
+<h2>{{ autor.nombre }} {{ autor.apellido }}</h2>
+
+{% if autor.foto_perfil %}
+    <img src="{{ autor.foto_perfil.url }}"
+         alt="Foto de {{ autor.nombre }}">
+{% endif %}
+
+<h3>Biografía</h3>
+
+<p>{{ autor.biografia }}</p>
+
+<p>Email: {{ autor.email }}</p>
+
+<h3>Artículos publicados</h3>
+
+{% if articulos %}
+
+    {% for articulo in articulos %}
+        <article>
+            <h4>{{ articulo.titulo }}</h4>
+
+            <p>{{ articulo.contenido|truncatewords:30 }}</p>
+
+            <a href="{% url 'articulos:detalle' articulo.slug %}">
+                Leer artículo completo
+            </a>
+        </article>
+        <hr>
+    {% endfor %}
+
+{% else %}
+    <p>Este autor todavía no tiene artículos publicados.</p>
+{% endif %}
+
+<a href="{% url 'autores:lista' %}">Volver a los autores</a>
+
+{% endblock %}

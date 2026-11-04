@@ -1,32 +1,42 @@
+
+{% load static %}
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Portal de Noticias{% endblock %}</title>
+
+    <title>{% block title %}Radar | Portal de Noticias{% endblock %}</title>
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
 
-    <header>
-        <h1>Portal de Noticias</h1>
+    <header class="site-header">
+        <div class="container">
+            <h1>Radar</h1>
+            <p>Portal de noticias y actualidad</p>
 
-        <nav>
-            <a href="/">Inicio</a>
-            <a href="/acerca/">Acerca de</a>
-            <a href="/articulos/">Artículos</a>
-            <a href="/categorias/">Categorías</a>
-            <a href="/autores/">Autores</a>
-            <a href="/contacto/">Contacto</a>
-        </nav>
+            <nav class="main-nav">
+                <a href="{% url 'inicio' %}">Inicio</a>
+                <a href="{% url 'acerca' %}">Acerca de</a>
+                <a href="{% url 'articulos:lista' %}">Artículos</a>
+                <a href="{% url 'categorias:lista' %}">Categorías</a>
+                <a href="{% url 'autores:lista' %}">Autores</a>
+                <a href="{% url 'contacto:formulario' %}">Contacto</a>
+            </nav>
+        </div>
     </header>
 
-    <main>
+    <main class="container">
         {% block content %}
         {% endblock %}
     </main>
 
-    <footer>
-        <p>&copy; 2026 Portal de Noticias. Todos los derechos reservados.</p>
+    <footer class="site-footer">
+        <div class="container">
+            <p>&copy; 2026 Radar - Portal de Noticias. Todos los derechos reservados.</p>
+        </div>
     </footer>
 
 </body>

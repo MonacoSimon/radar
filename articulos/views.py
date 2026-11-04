@@ -13,6 +13,7 @@ def lista_articulos(request):
         'articulos/lista.html',
         {'articulos': articulos}
     )
+
 def detalle_articulo(request, slug):
     articulo = get_object_or_404(
         Articulo,
@@ -20,8 +21,15 @@ def detalle_articulo(request, slug):
         estado='publicado'
     )
 
+    comentarios = articulo.comentarios.filter(
+        estado='aprobado'
+    )
+
     return render(
         request,
         'articulos/detalle.html',
-        {'articulo': articulo}
+        {
+            'articulo': articulo,
+            'comentarios': comentarios,
+        }
     )
