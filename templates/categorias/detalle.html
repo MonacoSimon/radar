@@ -1,3 +1,4 @@
+```django
 {% extends 'base.html' %}
 
 {% block title %}
@@ -10,21 +11,48 @@
 
 <p>{{ categoria.descripcion }}</p>
 
+<hr>
+
 <h3>Artículos de esta categoría</h3>
 
 {% if articulos %}
 
     {% for articulo in articulos %}
         <article>
-            <h4>{{ articulo.titulo }}</h4>
+
+            {% if articulo.imagen %}
+                <img
+                    src="{{ articulo.imagen.url }}"
+                    alt="{{ articulo.titulo }}"
+                    style="width: 250px; max-height: 160px; object-fit: cover;"
+                >
+            {% endif %}
+
+            <h4>
+                <a href="{% url 'articulos:detalle' articulo.slug %}">
+                    {{ articulo.titulo }}
+                </a>
+            </h4>
+
+            {% if articulo.subtitulo %}
+                <p>{{ articulo.subtitulo }}</p>
+            {% endif %}
 
             <p>{{ articulo.contenido|truncatewords:30 }}</p>
+
+            <p>
+                Por {{ articulo.autor }}
+                | Publicado: {{ articulo.fecha_creacion|date:"d/m/Y" }}
+            </p>
 
             <a href="{% url 'articulos:detalle' articulo.slug %}">
                 Leer artículo completo
             </a>
+
         </article>
+
         <hr>
+
     {% endfor %}
 
 {% else %}
@@ -34,7 +62,8 @@
 {% endif %}
 
 <a href="{% url 'categorias:lista' %}">
-    Volver a las categorías
+    ← Volver a las categorías
 </a>
 
 {% endblock %}
+```

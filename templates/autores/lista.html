@@ -11,18 +11,21 @@ Autores | Portal de Noticias
 {% if autores %}
 
     {% for autor in autores %}
-    <article>
+    <article class="author-card">
         <h3>{{ autor.nombre }} {{ autor.apellido }}</h3>
 
         {% if autor.foto_perfil %}
-            <img src="{{ autor.foto_perfil.url }}" alt="Foto de {{ autor.nombre }}">
+            <img 
+                src="{{ autor.foto_perfil.url }}" 
+                alt="Foto de {{ autor.nombre }}"
+                class="author-image"
+            >
         {% endif %}
 
         <p>{{ autor.biografia|truncatewords:40 }}</p>
 
         <p>Email: {{ autor.email }}</p>
 
-        <!-- Enlace al detalle del autor -->
         <p>
             <a href="{% url 'autores:detalle' autor.id %}">Ver perfil</a>
         </p>

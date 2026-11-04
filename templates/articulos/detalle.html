@@ -1,75 +1,87 @@
+
 {% extends 'base.html' %}
 
 {% block title %}
-{{ articulo.titulo }} | Portal de Noticias
+{{ articulo.titulo }} | Radar
 {% endblock %}
 
 {% block content %}
 
-<article>
+<article class="article-detail">
 
-    <h2>{{ articulo.titulo }}</h2>
+    <header class="article-detail-header">
 
-    {% if articulo.subtitulo %}
-        <h3>{{ articulo.subtitulo }}</h3>
-    {% endif %}
+        <span class="article-category">
+            {{ articulo.categoria }}
+        </span>
 
-    <p>
-        Autor: {{ articulo.autor }}
-        | Categoría: {{ articulo.categoria }}
-    </p>
+        <h2>{{ articulo.titulo }}</h2>
 
-    <p>
-        Publicado: {{ articulo.fecha_creacion|date:"d/m/Y" }}
-    </p>
+        {% if articulo.subtitulo %}
+            <h3>{{ articulo.subtitulo }}</h3>
+        {% endif %}
+
+        <div class="article-detail-meta">
+            <span>Por {{ articulo.autor }}</span>
+            <span>Publicado: {{ articulo.fecha_creacion|date:"d/m/Y" }}</span>
+        </div>
+
+    </header>
 
     {% if articulo.imagen %}
-        <img src="{{ articulo.imagen.url }}" alt="{{ articulo.titulo }}">
+        <img
+            src="{{ articulo.imagen.url }}"
+            alt="{{ articulo.titulo }}"
+            class="article-detail-image"
+        >
     {% endif %}
 
-    <div>
+    <div class="article-detail-content">
         {{ articulo.contenido|linebreaks }}
     </div>
 
-    <hr>
+    <div class="comment-action">
+        <h3>Dejá tu comentario</h3>
 
-    <h3>Dejá tu comentario</h3>
-
-    <a href="{% url 'comentarios:crear' articulo.id %}">
-        Escribir un comentario
-    </a>
+        <a href="{% url 'comentarios:crear' articulo.id %}" class="article-link">
+            Escribir un comentario
+        </a>
+    </div>
 
 </article>
 
-<hr>
+<section class="comments-section">
 
-<h3>Comentarios</h3>
+    <h3>Comentarios</h3>
 
-{% if comentarios %}
+    {% if comentarios %}
 
-    {% for comentario in comentarios %}
+        {% for comentario in comentarios %}
 
-        <article>
-            <h4>{{ comentario.nombre }}</h4>
+            <article class="comment-card">
 
-            <p>{{ comentario.contenido }}</p>
+                <h4>{{ comentario.nombre }}</h4>
 
-            <small>
-                {{ comentario.fecha_creacion|date:"d/m/Y H:i" }}
-            </small>
-        </article>
+                <p>{{ comentario.contenido }}</p>
 
-        <hr>
+                <small>
+                    {{ comentario.fecha_creacion|date:"d/m/Y H:i" }}
+                </small>
 
-    {% endfor %}
+            </article>
 
-{% else %}
+        {% endfor %}
 
-    <p>Todavía no hay comentarios aprobados.</p>
+    {% else %}
 
-{% endif %}
+        <p>Todavía no hay comentarios aprobados.</p>
 
-<br>
-<a href="{% url 'articulos:lista' %}">Volver a los artículos</a>
+    {% endif %}
+
+</section>
+
+<a href="{% url 'articulos:lista' %}" class="back-link">
+    ← Volver a los artículos
+</a>
 
 {% endblock %}

@@ -1,45 +1,73 @@
+
 {% extends 'base.html' %}
 
 {% block title %}
-{{ autor.nombre }} {{ autor.apellido }} | Portal de Noticias
+{{ autor.nombre }} {{ autor.apellido }} | Radar
 {% endblock %}
 
 {% block content %}
 
-<h2>{{ autor.nombre }} {{ autor.apellido }}</h2>
+<section class="author-detail">
 
-{% if autor.foto_perfil %}
-    <img src="{{ autor.foto_perfil.url }}"
-         alt="Foto de {{ autor.nombre }}">
-{% endif %}
+    <header class="author-detail-header">
 
-<h3>Biografía</h3>
+        {% if autor.foto_perfil %}
+            <img
+                src="{{ autor.foto_perfil.url }}"
+                alt="Foto de {{ autor.nombre }}"
+                class="author-detail-image"
+            >
+        {% endif %}
 
-<p>{{ autor.biografia }}</p>
+        <div>
+            <h2>{{ autor.nombre }} {{ autor.apellido }}</h2>
+            <p>{{ autor.email }}</p>
+        </div>
 
-<p>Email: {{ autor.email }}</p>
+    </header>
 
-<h3>Artículos publicados</h3>
+    <div class="author-biography">
+        <h3>Biografía</h3>
+        <p>{{ autor.biografia|linebreaks }}</p>
+    </div>
 
-{% if articulos %}
+</section>
 
-    {% for articulo in articulos %}
-        <article>
-            <h4>{{ articulo.titulo }}</h4>
+<section class="author-articles">
 
-            <p>{{ articulo.contenido|truncatewords:30 }}</p>
+    <h3>Artículos publicados</h3>
 
-            <a href="{% url 'articulos:detalle' articulo.slug %}">
-                Leer artículo completo
-            </a>
-        </article>
-        <hr>
-    {% endfor %}
+    {% if articulos %}
 
-{% else %}
-    <p>Este autor todavía no tiene artículos publicados.</p>
-{% endif %}
+        {% for articulo in articulos %}
 
-<a href="{% url 'autores:lista' %}">Volver a los autores</a>
+            <article class="author-article-card">
+
+                <h4>{{ articulo.titulo }}</h4>
+
+                <p>{{ articulo.contenido|truncatewords:30 }}</p>
+
+                <a
+                    href="{% url 'articulos:detalle' articulo.slug %}"
+                    class="article-link"
+                >
+                    Leer artículo completo
+                </a>
+
+            </article>
+
+        {% endfor %}
+
+    {% else %}
+
+        <p>Este autor todavía no tiene artículos publicados.</p>
+
+    {% endif %}
+
+</section>
+
+<a href="{% url 'autores:lista' %}" class="back-link">
+    ← Volver a los autores
+</a>
 
 {% endblock %}

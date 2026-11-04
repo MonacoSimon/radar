@@ -1,3 +1,4 @@
+```django
 {% extends 'base.html' %}
 
 {% block title %}
@@ -11,7 +12,20 @@ Inicio | Portal de Noticias
 {% if articulos %}
     {% for articulo in articulos %}
         <article>
-            <h3>{{ articulo.titulo }}</h3>
+
+            {% if articulo.imagen %}
+                <img
+                    src="{{ articulo.imagen.url }}"
+                    alt="{{ articulo.titulo }}"
+                    style="width: 250px; max-height: 160px; object-fit: cover;"
+                >
+            {% endif %}
+
+            <h3>
+                <a href="{% url 'articulos:detalle' articulo.slug %}">
+                    {{ articulo.titulo }}
+                </a>
+            </h3>
 
             {% if articulo.subtitulo %}
                 <p>{{ articulo.subtitulo }}</p>
@@ -23,7 +37,13 @@ Inicio | Portal de Noticias
                 Por {{ articulo.autor }}
                 | Categoría: {{ articulo.categoria }}
             </p>
+
+            <a href="{% url 'articulos:detalle' articulo.slug %}">
+                Leer artículo completo
+            </a>
+
         </article>
+
         <hr>
     {% endfor %}
 {% else %}
@@ -34,10 +54,15 @@ Inicio | Portal de Noticias
 
 <ul>
     {% for categoria in categorias %}
-        <li>{{ categoria.nombre }}</li>
+        <li>
+            <a href="{% url 'categorias:detalle' categoria.slug %}">
+                {{ categoria.nombre }}
+            </a>
+        </li>
     {% empty %}
         <li>No hay categorías disponibles.</li>
     {% endfor %}
 </ul>
 
 {% endblock %}
+```
